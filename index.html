@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFL Banking</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0d0d0d;
+            color: white;
+        }
+
+        /* Navigation */
+        nav {
+            background: #111;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #444;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #f1c40f;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            padding: 40px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* Dashboard Background */
+        #dashboard {
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            transition: background 0.5s ease-in-out;
+        }
+
+        /* Team Selector */
+        .team-select {
+            margin-top: 20px;
+        }
+
+        .team-select button {
+            padding: 12px 20px;
+            margin: 10px;
+            background: #222;
+            border: 1px solid #555;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+
+        .team-select button:hover {
+            background: #f1c40f;
+            color: black;
+        }
+
+        /* Team Backgrounds */
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div><strong>DFL Banking</strong></div>
+        <div>
+            <a href="#" onclick="showPage('home')">Home</a>
+            <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <h1>Willkommen im DFL Banking System</h1>
+        <p>Die offizielle Finanzverwaltung der DFL F1 Simracing Liga.</p>
+        <p>Hier kannst du Schäden melden, Team‑Budgets verwalten, Strafen einsehen und vieles mehr.</p>
+
+        <h2>Teams</h2>
+        <p>Wähle ein Team aus, um später im Dashboard den Hintergrund zu ändern.</p>
+
+        <div class="team-select">
+            <button onclick="setTeam('mercedes')">Mercedes</button>
+            <button onclick="setTeam('ferrari')">Ferrari</button>
+            <button onclick="setTeam('redbull')">Red Bull</button>
+            <button onclick="setTeam('mclaren')">McLaren</button>
+            <button onclick="setTeam('aston')">Aston Martin</button>
+            <button onclick="setTeam('williams')">Williams</button>
+            <button onclick="setTeam('sauber')">Sauber</button>
+            <button onclick="setTeam('haas')">Haas</button>
+            <button onclick="setTeam('rb')">RB</button>
+            <button onclick="setTeam('alp')">Alpine</button>
+        </div>
+    </div>
+
+    <!-- DASHBOARD PAGE -->
+    <div id="dashboard" class="page">
+        <h1>DFL Dashboard</h1>
+        <p>Team-Hintergrund aktiv basierend auf deiner Auswahl.</p>
+
+        <h2>Aktuelles Team: <span id="teamName">Kein Team ausgewählt</span></h2>
+
+        <p>Hier kommen später:</p>
+        <ul>
+            <li>Kontostände</li>
+            <li>Schadensmeldungen</li>
+            <li>Strafen</li>
+            <li>Versicherungen</li>
+            <li>Team‑Budget</li>
+            <li>Transaktionen</li>
+        </ul>
+    </div>
+
+    <script>
+        function showPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(page).classList.add('active');
+        }
+
+        const teamBackgrounds = {
+            mercedes: "url('https://i.imgur.com/0H1YQmM.jpeg')",
+            ferrari: "url('https://i.imgur.com/8mJtYfM.jpeg')",
+            redbull: "url('https://i.imgur.com/5gkqk2M.jpeg')",
+            mclaren: "url('https://i.imgur.com/0q8qX0X.jpeg')",
+            aston: "url('https://i.imgur.com/2tYpQmT.jpeg')",
+            williams: "url('https://i.imgur.com/9lYQmPp.jpeg')",
+            sauber: "url('https://i.imgur.com/3kYQmPp.jpeg')",
+            haas: "url('https://i.imgur.com/7lYQmPp.jpeg')",
+            rb: "url('https://i.imgur.com/4kYQmPp.jpeg')",
+            alp: "url('https://i.imgur.com/6lYQmPp.jpeg')"
+        };
+
+        function setTeam(team) {
+            const dashboard = document.getElementById('dashboard');
+            dashboard.style.backgroundImage = teamBackgrounds[team];
+            document.getElementById('teamName').innerText = team.toUpperCase();
+            showPage('dashboard');
+        }
+    </script>
+
+</body>
+</html>
